@@ -1,0 +1,13 @@
+Redirecciones:
+
+cat 
+Repite lo que tecleamos en la entrada estándar
+
+cat > fichero
+genera un fichero con lo que escribimos
+control+d EOF
+Si el fichero ya existe lo machaca
+
+cat >> fichero
+Añadir el contenido al final del fichero, mantiene
+todo lo que había en el fichero

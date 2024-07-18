@@ -1,0 +1,8 @@
+Contar ocurrencias dentro de un fichero:
+
+- Cuántos pedidos tenemos de Suiza, después de sustituir
+Alemania por Suiza:
+cat Pedidos.txt | grep "Suiza" | wc -l
+
+Con redirección:
+cat Pedidos.txt | grep "Suiza" > Suiza.txt

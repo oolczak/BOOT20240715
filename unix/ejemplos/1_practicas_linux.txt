@@ -1,0 +1,62 @@
+1_practicas_linux.pdf
+
+Practicas con ls
+
+1) cd /usr   ls -a
+   ls /usr -a  <--> ls -a /usr
+
+2) desde /etc
+	ls manpath.config -hl  -> 5,1 K
+   desde $HOME
+	ls /etc/manpath.config -hl  -> 5,1 K
+
+3) ls /etc -lSh
+
+   ls /etc -lSh | head -2  (tamaño total y el fichero mas grande)
+
+   ls /etc -lShr  (invertir y mirar la última fila)
+
+4) inodo desde otra carpeta distinta
+   ls -i $HOME
+
+5) ls -1  (en columna)
+   ls -m  (en fila)
+
+6) ls /etc -lhSa
+
+Prácticas con directorios:
+
+mkdir -p Fotos/{Color,BlancoNegro}
+mkdir -p Videos/Familiares
+mkdir -p Ejercicios/{Cuestiones,Problemas}
+
+Obtener cuanto ocupa en K,M,G todas las
+subcarpetas de la carpeta / (raíz).
+du / -chd 1
+
+Prácticas Visualizar:
+1) cd /etc
+cat -n mtools.conf  -> incluye las líneas en blanco
+cat -b mtools.conf  -> No las incluye
+
+2) more +14 -3 Pedidos.txt
+
+3) less -e (2ª vez al final se sale)
+   less -E (se sale con la 1ª)
+
+4) less -w Pedidos.txt
+
+5) Las 15 primeras filas:head -15 Pedidos.txt
+   La última fila:  tail -1 Pedidos.txt
+   Los últimos 20 bytes: tail -c 20
+
+
+Practicas sobre FIND
+1) find /etc -size +10k
+4) sudo find /etc -newer /etc/profile
+
+
+
+
+
+

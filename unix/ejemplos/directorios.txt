@@ -1,0 +1,61 @@
+/home/user
+	gerardo
+	nicolas
+	willy
+		formas
+		colores
+
+	curso_cap
+		ficheros (Pedidos.txt, ....)
+    
+1) Situarnos en la carpeta home/user y obtener:
+ los ficheros de:
+	- cd willy/colores
+	pwd: /home/antonio/willy/colores
+
+2) Situarnos en formas:
+	1) cd ..  
+      	   cd formas
+
+        2) cd ../formas
+
+3) Desde formas ir a gerardo:
+	1) cd ../../gerardo
+
+4) desde gerardo al tmp
+	cd /tmp
+
+5) desde /tmp al formas
+	cd /home/antonio/willy/formas
+	cd /$HOME/willy/formas
+
+6) situarnos en /etc
+	ir al /bin
+	cd /etc
+	cd /bin      cd ../bin
+
+7) cd directo a nuestro directorio home/user
+
+8) . (el punto) representa el directorio actual
+  
+9) Copiar desde: $HOME/curso_cap/ficheros
+  el fichero: Pedidos.txt a la carpeta de willy
+
+10) Permisos de los ficheros
+rwx rwx rwx
+421 421 421
+
+110 100 100 -> 644
+
+r-x r-x r-- -> 
+101 101 100 -> 554
+
+701 -> 111 000 001 -> rwx --- --x
+
+ 
+
+
+
+
+
+	

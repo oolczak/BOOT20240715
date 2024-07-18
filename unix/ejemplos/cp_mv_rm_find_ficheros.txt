@@ -1,0 +1,81 @@
+Copiar los ficheros de la carpeta donde estamos situados
+a la carpeta que está por encima
+
+cp * ..
+
+
+mv: por defecto machaca el contenido del destino si ya existe
+con la opción -i nos pregunta
+
+curso_cap
+	ficheros
+		*.txt
+
+		ficheros_backup
+			*.txt
+			pedidos
+				*.txt
+
+Situarnos en curso_cap
+borrar todo desde "ficheros_backup" -> rm -r ficheros/ficheros_backup
+
+find:
+Ficheros que tengan extension txt dentro de la carpeta de ficheros
+desde el directorio de usuario.
+cd -> estamos en /home/user
+find curso_cap/ficheros -name *.txt
+
+De la misma carpeta los que contengan la palabra pedidos
+ignorar mayúsculas.
+find curso_cap/ficheros/ -iname  *pedidos*
+
+Cuantos tenemos?
+find curso_cap/ficheros/ -iname  *pedidos* | wc -l
+
+Hay algún enlace simbólico en la carpeta /etc:
+
+directorios a partir de $HOME si estamos en la carpeta
+curso_cap/ficheros
+find $HOME -type d
+
+Buscar en la carpeta /etc si hay algún ficheros que
+hemos accedido hace 2 días.
+find /etc -atime 2
+
+Ficheros de la carpeta de user hace 1 día y que contengan
+la palabra pedidos (sin tener en cuenta may)
+find $HOME -atime 1 -iname *pedidos*
+
+Acceso a ficheros hace menos de 1 min
+ find $HOME -amin -1
+
+Buscar archivos del curso que ocupen más de 5 k
+find $HOME -size +5k
+
+Todos los ficheros que contengan pedidos y +5k
+find $HOME -size +5k -iname *pedidos*
+
+Dentro de $HOME buscar ficheros con permiso 
+de lectura, escritura y ejecución para todo el mundo
+rwx rwx rwx
+421 421 421
+ 7   7   7
+
+find $HOME -perm 777
+
+Todos los ficheros de root de la carpeta /etc que empiecen
+por "cron"
+find /etc -user root -name cron*
+
+Ficheros que tengan permisos 777 o que sean inferiores
+1 k
+
+Combinar find para borrar o visualizar el contenido
+del ficheros
+cat $(find . -size -2k)
+cat `find . -size -2k`
+
+rm $(find . -size -2k)
+rm `find . -size -2k`
+
+

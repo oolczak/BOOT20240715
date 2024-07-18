@@ -1,0 +1,18 @@
+Tuberias:
+
+- Cuántos ficheros tenemos en la carpeta /etc
+ls /etc | wc -l
+
+
+- Con el fichero de pedidos.txt
+- Cuantas filas tiene?
+- Partir el fichero en 2 partes mas o menos
+iguales y almacenarlo en una subcarpeta
+- Juntar las dos partes en Pedidos2.txt
+
+mkdir pedidos
+head -400 Pedidos.txt > pedidos/pedidos_parte1.txt
+tail -400 Pedidos.txt > pedidos/pedidos_parte2.txt
+cat pedidos/pedidos_parte1.txt pedidos/pedidos_parte2.txt > Pedidos2.txt
+
+

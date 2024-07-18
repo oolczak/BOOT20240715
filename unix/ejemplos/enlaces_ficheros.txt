@@ -1,0 +1,22 @@
+Enlaces: ln nombreFichero nombreEnlace
+- Duro
+ Cualquier modificación en el fichero original
+o en el enlace duro se ve modificado en ambos sitios
+
+ls -l me muestra el número de enlaces duros de cada fichero
+y además coinciden en el i-nodo
+
+Se puede eliminar el fichero original o el enlace duro
+pero no se borra definitivamente hasta que solo queda 1 enlace
+
+
+- Simbólico: ln -s nombreFichero nombreEnlace
+
+- El enlace simbo. se puede borrar y se mantiene el fichero
+pero si borramos el fichero original el enlace queda 
+desvinculado (ya no encuentra el fichero original)
+
+- Si modificamos a través del enlace simbólico: se modifica
+el fichero original y los enlaces duros que tengamos
+
+Con unlink se pueden borrar los dos tipos enlaces!!

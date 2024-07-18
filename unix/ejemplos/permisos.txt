@@ -1,0 +1,33 @@
+Permisos:
+
+rwx
+421
+
+664 -> rw- rw- r--
+
+si la máscara es: 0 002
+
+Permiso base: 666
+
+666 (restamos)
+002
+===
+664  -> 110 110 100 -> rw- rw- r--
+
+Si queremos crear archivos con rw-rw-rw-
+la mascara: 
+
+rw-rw-rw- ==> 110 110 110 => 666
+
+permisos de partida : 666
+permisos de creación: 666
+mascara             : 000
+
+
+
+
+
+
+- Activar permiso de ejecución para el propietario
+del fichero Empleados.txt
+De forma simbólica

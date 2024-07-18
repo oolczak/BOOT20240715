@@ -1,0 +1,84 @@
+id;nombre;idcategoria;precio;existencias
+1;Te Dharamsala;1;18,0;390
+2;Cerveza tibetana Barley;1;23,0946;17
+3;Sirope de regaliz;2;12,1551;13
+4;Especias Cajun del chef Anton;2;22,0;53
+5;Mezcla Gumbo del chef Anton;2;25,9511;0
+6;Mermelada de grosellas de la a;2;25,0;120
+7;Peras secas organicas del tio ;7;36,4652;15
+8;Salsa de arandanos Northwoods;2;48,6203;6
+9;Buey Mishi Kobe;6;117,904;29
+10;Pez espada;8;37,6807;31
+11;Queso Cabrales;4;25,5256;22
+12;Queso Manchego La Pastora;4;38,0;86
+13;Algas Konbu;8;7,29304;24
+14;Cuajada de judias;7;28,2605;35
+15;Salsa de soja baja en sodio;2;18,8403;39
+16;Postre de merengue Pavlova;3;21,2106;29
+17;Cordero Alice Springs;6;47,4047;0
+18;Langostinos tigre Carnarvon;8;75,9691;42
+19;Pastas de te de chocolate;3;11,1827;25
+20;Mermelada de Sir Rodney's;3;98,456;40
+21;Bollos de Sir Rodney's;3;12,1551;3
+22;Pan de centeno crujiente estil;5;21,0;104
+23;Pan fino;5;9,0;61
+24;Refresco Guarana Fantastica;1;5,46978;20
+25;Crema de chocolate y nueces Nu;3;14,0;76
+26;Ositos de goma Gumbar;3;37,9603;15
+27;Chocolate Schoggi;3;53,3607;49
+28;Col fermentada Rossle;7;55,4271;26
+29;Salchicha Thuringer;6;150,468;0
+30;Arenque blanco del noroeste;8;31,4695;10
+31;Queso gorgonzola Telino;4;15,1938;0
+32;Queso Mascarpone Fabioli;4;38,8962;9
+33;Queso de cabra;4;2,5;112
+34;Cerveza Sasquatch;1;14,0;111
+35;Cerveza negra Steeleye;1;21,8791;20
+36;Escabeche de arenque;8;19,0;112
+37;Salmon ahumado Gravad;8;31,6032;11
+38;Vino Cote de Blaye;1;320,286;17
+39;Licor verde Chartreuse;1;18,0;69
+40;Carne de cangrejo de Boston;8;18,4;123
+41;Crema de almejas estilo Nueva ;8;9,65;85
+42;Tallarines de Singapur;5;17,0171;26
+43;Cafe de Malasia;1;46,0;250
+44;Azucar negra Malacca;2;23,6416;27
+45;Arenque ahumado;8;11,5473;5
+46;Arenque salado;8;12,0;950
+47;Galletas Zaanse;3;11,5473;36
+48;Chocolate holandes;3;15,4977;15
+49;Regaliz;3;24,3101;10
+50;Chocolate blanco;3;16,25;65
+51;Manzanas secas Manjimup;7;64,4218;20
+52;Cereales para Filo;5;8,50854;38
+53;Empanada de carne;6;39,8686;0
+54;Empanada de cerdo;6;9,05552;21
+55;Pate chino;6;24,0;115
+56;Gnocchi de la abuela Alicia;5;46,1892;21
+57;Raviolis Angelo;5;23,7024;36
+58;Caracoles de Borgonya;8;13,25;62
+59;Raclet de queso Courdavault;4;55,0;79
+60;Camembert Pierrot;4;41,3272;19
+61;Sirope de arce;2;28,5;113
+62;Tarta de azucar;3;59,9245;17
+63;Sandwich de vegetales;2;53,3607;24
+64;Bollos de pan de Wimmer;5;40,4156;22
+65;Salsa de pimiento picante de L;2;21,05;76
+66;Especias picantes de Luisiana;2;20,6636;4
+67;Cerveza Laughing Lumberjack;1;14,0;52
+68;Barras de pan de Escocia;3;15,1938;6
+69;Queso Gudbrandsdals;4;43,7582;26
+70;Cerveza Outback;1;18,2326;15
+71;Crema de queso Flotemys;4;26,1334;26
+72;Queso Mozzarella Giovanni;4;42,2996;14
+73;Caviar rojo;8;15,0;101
+74;Queso de soja Longlife;7;12,1551;4
+75;Cerveza Klosterbier Rhonbrau;1;7,75;125
+76;Licor Cloudberry;1;18,0;57
+77;Salsa verde original Frankfurt;2;15,8016;32
+78;Fanta;1;1,82326;15
+79;Coca Cola;1;1,5;2500
+80;Azafrán Rojo;2;250,0;150
+81;Pepsi;1;1,5;250
+82;Fanta lima;1;1,82326;15
+83;Red Bull;1;2,73489;25

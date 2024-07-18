@@ -1,0 +1,7 @@
+Fechas:
+
+ls -l  Vemos la fecha de la última modificación
+Es lo mismo que ls -lc (c-hange)
+
+ls -lu La fecha del último acceso: cat, head
+Algún comando que haya leído el fichero.
