@@ -41,7 +41,7 @@ SELECT *
 FROM   employees
 where (manager_id is null and commission_pct is null) or (manager_id = commission_pct)
 /
-SELECT last_name, department_id, salary
+SELECT rownum, last_name, department_id, salary
 FROM   employees
 WHERE  
 department_id = 60 OR (department_id = 80 AND salary > 10000);
@@ -57,3 +57,6 @@ FROM   employees
 where JOB_ID = &&pide_puesto;
 
 undefine &&pide_puesto;
+/
+SELECT last_name, hire_date, ADD_MONTHS(hire_date, 5 * 12)
+FROM employees
