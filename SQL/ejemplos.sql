@@ -11,4 +11,8 @@ FROM   employees;
 SELECT last_name, job_id, salary, commission_pct, salary * NVL(commission_pct,0)
 FROM   employees;
 /
+SELECT DISTINCT department_id
+FROM   employees;
+/
+desc employees
 
