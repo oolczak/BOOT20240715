@@ -95,3 +95,37 @@ where EXTRACT(YEAR FROM hire_date) = 2006
     OR TO_CHAR(hire_date, 'YEAR') = '2006'
 ;
 /
+SELECT count(*), count(1), count(EMPLOYEE_ID), count(COMMISSION_PCT), max(SALARY), min(SALARY)
+FROM employees;
+/
+SELECT avg(COMMISSION_PCT), sum(COMMISSION_PCT)/count(COMMISSION_PCT), sum(COMMISSION_PCT)/count(1), avg(nvl(COMMISSION_PCT,0))
+FROM employees;
+/
+SELECT department_id, job_id, min(FIRST_NAME), count(*), count(1), count(EMPLOYEE_ID), count(COMMISSION_PCT), max(SALARY), min(SALARY)
+FROM employees
+--WHERE SALARY > 3000 AND DEPARTMENT_ID IN (50,60,80)
+GROUP BY department_id, job_id
+HAVING count(1) = 1 AND AVG(SALARY) > 3000
+order by department_id, job_id
+;
+/
+
+SELECT EMPLOYEE_ID, LAST_NAME, SALARY
+FROM employees
+
+/
+SELECT DEPARTMENT_ID, avg(SALARY)
+FROM employees
+GROUP BY department_id
+/
+SELECT EMPLOYEE_ID, LAST_NAME, SALARY,  avg(SALARY) over(PARTITION by department_id)
+FROM employees
+--WHERE  SALARY > avg(SALARY) over(PARTITION by department_id)
+; --AVG(salary) OVER (PARTITION BY manager_id ORDER BY hire_date
+/
+SELECT CASE GROUPING(department_id) WHEN 0 THEN to_char(department_id) ELSE 'TOTAL' END departamento, 
+    CASE GROUPING(job_id) WHEN 0 THEN job_id ELSE 'TOTAL' END PUESTO, count(*), GROUPING(department_id), GROUPING(job_id)
+FROM employees
+GROUP BY ROLLUP(department_id, job_id)
+order by department_id, job_id
+;

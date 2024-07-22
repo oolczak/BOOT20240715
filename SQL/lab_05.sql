@@ -41,7 +41,15 @@ SELECT /*DISTINCT*/ job_id, CASE job_id
     ELSE 'O'
     END GRADE
 FROM employees
---ORDER BY GRADE
+-- WHERE CASE job_id
+--     WHEN 'ST_CLERK' THEN 'E'
+--     WHEN 'SA_REP' THEN 'D'
+--     WHEN 'IT_PROG' THEN 'C'
+--     WHEN 'ST_MAN' THEN 'B'
+--     WHEN 'AD_PRES' THEN 'A'
+--     ELSE 'O'
+--     END in ('E', 'C')
+ORDER BY GRADE
 ;
 
 -- lab_05_05
