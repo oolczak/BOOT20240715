@@ -86,3 +86,12 @@ where upper((CASE
     WHEN SALARY IS NULL THEN 'SIN SALARIO'
       ELSE 'Excellent' 
 END) || ' algo') is not null ;
+/
+-- lab_03_07
+-- ALTER SESSION SET NLS_LANGUAGE=English;
+SELECT last_name, hire_date
+FROM employees
+where EXTRACT(YEAR FROM hire_date) = 2006
+    OR TO_CHAR(hire_date, 'YEAR') = '2006'
+;
+/

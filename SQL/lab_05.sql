@@ -6,11 +6,18 @@ FROM employees;
 
 -- lab_05_02
 --ALTER SESSION SET NLS_LANGUAGE=English;
+SELECT TO_CHAR(NEXT_DAY(SYSDATE, 0),'Day') from DUAL;
+
 SELECT TO_CHAR(TO_DATE('31-07-2000', 'DD-MM-YYYY'), 'fmDay, "the" Ddspth "of" Month, YYYY') FROM dual;
 
 SELECT last_name, hire_date,
-    TO_CHAR(NEXT_DAY(ADD_MONTHS(hire_date, 6), 1), -- 'MONDAY' 'LUNES'
+    TO_CHAR(NEXT_DAY(ADD_MONTHS(hire_date, 6), 2), -- 'MONDAY' 'LUNES'
         'fmDay, "the" Ddspth "of" Month, YYYY', 'NLS_DATE_LANGUAGE = ENGLISH' 
+    ) REVIEW
+FROM employees;
+SELECT last_name, hire_date,
+    TO_CHAR(NEXT_DAY(ADD_MONTHS(hire_date, 6), 2), -- 'MONDAY' 'LUNES'
+        'fmDay, "el" Ddspth "de" Month "de" YYYY', 'NLS_DATE_LANGUAGE = SPANISH' 
     ) REVIEW
 FROM employees;
 
