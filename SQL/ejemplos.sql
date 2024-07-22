@@ -59,4 +59,30 @@ where JOB_ID = &&pide_puesto;
 undefine &&pide_puesto;
 /
 SELECT last_name, hire_date, ADD_MONTHS(hire_date, 5 * 12)
+FROM employees;
+/
+SELECT SYSDATE, SYSDATE - 7, SYSDATE - TO_DATE('01-JUN-2024'), TO_CHAR(SYSDATE, 'DD-MON-RR')
+from dual;
+/
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RR';
+SELECT EMPLOYEE_ID, SYSDATE - HIRE_DATE "Dias en la empresa", HIRE_DATE
+FROM   employees;
+/
+SELECT last_name,salary, 
+upper((CASE 
+      WHEN salary>20000 THEN 'Good' 
+      WHEN COMMISSION_PCT IS NOT NULL THEN 'Medium' 
+      WHEN LAST_NAME = 'King' then 'jefe'
+    WHEN salary>5000 THEN 'Low' 
+    WHEN SALARY IS NULL THEN 'SIN SALARIO'
+      ELSE 'Excellent' 
+END) || ' algo') qualified_salary 
 FROM employees
+where upper((CASE 
+      WHEN salary>20000 THEN 'Good' 
+      WHEN COMMISSION_PCT IS NOT NULL THEN 'Medium' 
+      WHEN LAST_NAME = 'King' then 'jefe'
+    WHEN salary>5000 THEN 'Low' 
+    WHEN SALARY IS NULL THEN 'SIN SALARIO'
+      ELSE 'Excellent' 
+END) || ' algo') is not null ;
