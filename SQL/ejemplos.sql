@@ -129,3 +129,43 @@ FROM employees
 GROUP BY ROLLUP(department_id, job_id)
 order by department_id, job_id
 ;
+/
+SELECT DECODE(GROUPING(department_name), 1, 'all Departments',
+      department_name) AS department_name,
+   DECODE(GROUPING(job_id), 1, 'all Jobs', job_id) AS job_id,
+   COUNT(*) "Total Empl", AVG(salary) * 12 "Average Sal"
+   FROM employees e, departments d
+   WHERE d.department_id = e.department_id
+   GROUP BY CUBE (department_name, job_id)
+   ORDER BY department_name, job_id;
+/   
+SELECT * FROM (
+    SELECT job_id, department_id, salary
+    FROM employees
+    WHERE department_id in (20,50,80,90)
+) PIVOT (
+    sum(salary) for department_id in (20 as "Dept 20", 50 as "Dept 50", 80 as "Dept 80", 90 as "Dept 90")
+);
+/
+SELECT EXTRACT(YEAR FROM hire_date) AÑO, TO_NUMBER(TO_CHAR(hire_date, 'q')) trimestre, ROUND(AVG(SALARY),2)
+FROM employees
+GROUP BY EXTRACT(YEAR FROM hire_date), TO_NUMBER(TO_CHAR(hire_date, 'q'))
+ORDER BY año, trimestre;
+/
+SELECT * FROM (
+    SELECT EXTRACT(YEAR FROM hire_date) AÑO, TO_NUMBER(TO_CHAR(hire_date, 'q')) trimestre, SALARY
+    FROM employees
+) PIVOT (
+    avg(salary) for trimestre in (1 as "T1", 2 as "T2", 3 as "T3", 4 as "T4")
+)
+ORDER BY 1;
+/
+SELECT AÑO, NVL(ROUND(T1, 2),0) T1, NVL(ROUND(T2, 2),0) T2, NVL(ROUND(T3, 2),0) T3, NVL(ROUND(T4, 2),0) T4,
+    NVL(ROUND(T1, 2),0) + NVL(ROUND(T2, 2),0) + NVL(ROUND(T3, 2),0) + NVL(ROUND(T4, 2),0) Total
+  FROM (
+    SELECT EXTRACT(YEAR FROM hire_date) AÑO, TO_NUMBER(TO_CHAR(hire_date, 'q')) trimestre, SALARY
+    FROM employees
+) PIVOT (
+    avg(salary) for trimestre in (1 as "T1", 2 as "T2", 3 as "T3", 4 as "T4")
+)
+ORDER BY 1;
