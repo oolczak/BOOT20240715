@@ -74,7 +74,7 @@ SELECT job_id "Job",
     SUM(DECODE(department_id, 90, salary)) "Dept 90",
     SUM(salary) "Total"
 FROM employees
---WHERE department_id in (20,50,80,90)
+WHERE department_id in (20,50,80,90)
 GROUP BY job_id;
 
 
