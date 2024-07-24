@@ -188,3 +188,40 @@ FROM employees e
         FROM departments D
         JOIN locations l USING (location_id) where LOWER(l.city) = 'toronto') R ON e.department_id = R.department_id
 ;
+
+/
+SELECT * FROM LOCATIONS WHERE LOCATIONS.LOCATION_ID = 1500;
+
+SELECT e.last_name, e.job_id, e.department_id, d.department_name
+FROM employees e 
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l USING (location_id)
+UNION
+(
+    SELECT e.last_name, e.job_id, e.department_id, d.department_name
+    FROM employees e 
+        JOIN departments d ON e.department_id = d.department_id
+        JOIN locations l USING (location_id)
+    WHERE LOWER(l.city) = 'south san francisco'
+    EXCEPT
+        SELECT e.last_name, e.job_id, e.department_id, d.department_name
+        FROM employees e 
+            JOIN departments d ON e.department_id = d.department_id
+        WHERE e.job_id IN (SELECT JOB_ID FROM JOBS WHERE JOB_TITLE = 'Stock Manager')
+)
+ORDER BY 1, 2;
+/
+SELECT CONJUNTO.*, D.department_name FROM
+    (
+        SELECT e.last_name, e.job_id, e.department_id
+        FROM employees e 
+            JOIN departments d ON e.department_id = d.department_id
+            JOIN locations l USING (location_id)
+        WHERE LOWER(l.city) = 'south san francisco'
+        INTERSECT
+            SELECT e.last_name, e.job_id, e.department_id
+            FROM employees e 
+            WHERE e.job_id IN (SELECT JOB_ID FROM JOBS WHERE JOB_TITLE = 'Stock Manager')
+    ) CONJUNTO
+            JOIN departments d ON CONJUNTO.department_id = d.department_id;
+

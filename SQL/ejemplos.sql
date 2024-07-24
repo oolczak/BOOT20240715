@@ -129,6 +129,23 @@ FROM employees
 GROUP BY ROLLUP(department_id, job_id)
 order by department_id, job_id
 ;
+
+SELECT TO_CHAR(department_id) department_id, job_id, count(*) EMPLEADOS, 1 CONSULTA
+FROM employees
+GROUP BY department_id, JOB_ID
+UNION
+    SELECT TO_CHAR(department_id) department_id, 'Total DEL DEPARTAMENTO' JOB_ID, count(*) EMPLEADOS, 2 CONSULTA
+    FROM employees
+    GROUP BY department_id
+UNION
+    SELECT 'Total DE LA EMPRESA' department_id, '' JOB_ID, count(*) EMPLEADOS, 3 CONSULTA
+    FROM employees
+    order by department_id, CONSULTA, job_id
+
+
+
+
+;
 /
 SELECT DECODE(GROUPING(department_name), 1, 'all Departments',
       department_name) AS department_name,
