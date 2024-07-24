@@ -54,6 +54,9 @@ FROM DEPARTMENTS D
     FULL JOIN EMPLOYEES E ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
 ORDER BY 1
 ;
+/
+DESC DEPARTMENTS
+
 SELECT D.DEPARTMENT_ID, MAX(D.DEPARTMENT_NAME) name, COUNT(E.EMPLOYEE_ID) empleados
 FROM DEPARTMENTS D 
    JOIN EMPLOYEES E ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
@@ -81,3 +84,91 @@ FROM EMPLOYEES E
 ORDER BY E.EMPLOYEE_ID, START_DATE
 ;
 /
+SELECT  E.FIRST_NAME || ' ' || E.LAST_NAME NOMBRE_EMPLEADO, 
+    NVL(H.START_DATE,E.HIRE_DATE) START_DATE, H.END_DATE,  
+    NVL(JH.JOB_TITLE, JA.JOB_TITLE) JOB, 
+    NVL(NVL(DH.DEPARTMENT_NAME, DA.DEPARTMENT_NAME), '(SIN DEPARTAMENTO)') DEPARTMENT
+FROM EMPLOYEES E
+    JOIN JOBS JA ON JA.JOB_ID = E.JOB_ID
+    LEFT JOIN DEPARTMENTS DA ON DA.DEPARTMENT_ID = E.DEPARTMENT_ID
+    LEFT JOIN JOB_HISTORY H ON E.EMPLOYEE_ID = H.EMPLOYEE_ID
+    LEFT JOIN DEPARTMENTS DH ON DH.DEPARTMENT_ID = H.DEPARTMENT_ID
+    LEFT JOIN JOBS JH ON JH.JOB_ID = H.JOB_ID
+--WHERE H.EMPLOYEE_ID IS NOT NULL
+ORDER BY E.EMPLOYEE_ID, START_DATE
+;
+/
+SELECT  E.FIRST_NAME || ' ' || E.LAST_NAME NOMBRE_EMPLEADO, 
+    NVL(H.START_DATE,E.HIRE_DATE) START_DATE, H.END_DATE,  
+    NVL(JH.JOB_TITLE, JA.JOB_TITLE) JOB, 
+    NVL(NVL(DH.DEPARTMENT_NAME, DA.DEPARTMENT_NAME), '(SIN DEPARTAMENTO)') DEPARTMENT
+FROM JOB_HISTORY H 
+    JOIN DEPARTMENTS DH ON DH.DEPARTMENT_ID = H.DEPARTMENT_ID
+    JOIN JOBS JH ON JH.JOB_ID = H.JOB_ID
+    RIGHT JOIN EMPLOYEES E ON E.EMPLOYEE_ID = H.EMPLOYEE_ID
+    LEFT JOIN DEPARTMENTS DA ON DA.DEPARTMENT_ID = E.DEPARTMENT_ID
+    LEFT JOIN JOBS JA ON JA.JOB_ID = E.JOB_ID
+--WHERE H.EMPLOYEE_ID IS NOT NULL
+ORDER BY E.EMPLOYEE_ID, START_DATE
+;
+/
+
+
+-- lab_07_08
+SELECT last_name, count(*) FROM employees GROUP BY last_name ORDER BY 2, 1;
+SELECT * FROM employees WHERE last_name = 'Davies';
+SELECT e.last_name "Employee", e.hire_date
+FROM employees e INNER JOIN employees d ON d.last_name = 'Davies'
+WHERE d.hire_date < e.hire_date
+ORDER BY 2;
+SELECT count(*) FROM employees WHERE hire_date > '29-01-2005';
+
+SELECT  e.last_name "Employee", e.hire_date 
+FROM employees e 
+WHERE e.hire_date > ANY (SELECT hire_date FROM employees WHERE last_name = 'Davies');
+
+SELECT  e.last_name "Employee", e.hire_date 
+FROM employees e 
+WHERE e.hire_date IN (SELECT hire_date FROM employees WHERE last_name = 'Davies');
+
+SELECT e.DEPARTMENT_ID, e.last_name "Employee", salary, (SELECT avg(salary) FROM employees d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID) * 100 nedia
+FROM employees e 
+WHERE e.SALARY > (SELECT avg(salary) FROM employees d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID)
+order by 1, 2
+;
+
+SELECT e.DEPARTMENT_ID, e.last_name "Employee", salary, (SELECT avg(salary) FROM employees d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID) * 100 nedia
+FROM employees e 
+WHERE e.EMPLOYEE_ID IN (SELECT H.EMPLOYEE_ID FROM JOB_HISTORY H)
+order by 1, 2
+;
+SELECT e.DEPARTMENT_ID, e.last_name "Employee", salary, (SELECT avg(salary) FROM employees d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID) * 100 nedia
+FROM employees e 
+WHERE EXISTS(SELECT * FROM JOB_HISTORY H WHERE E.EMPLOYEE_ID = H.EMPLOYEE_ID)
+order by 1, 2
+;
+SELECT e.DEPARTMENT_ID, e.last_name "Employee", salary, (SELECT avg(salary) FROM employees d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID) * 100 nedia
+FROM employees e 
+WHERE (SELECT COUNT(1) FROM JOB_HISTORY H WHERE E.EMPLOYEE_ID = H.EMPLOYEE_ID) > 0
+order by 1, 2
+;
+
+SELECT E.DEPARTMENT_ID, (SELECT DEPARTMENT_NAME FROM DEPARTMENTS D WHERE D.DEPARTMENT_ID = E.DEPARTMENT_ID) name, COUNT(E.EMPLOYEE_ID) empleados
+FROM EMPLOYEES E
+WHERE E.SALARY > 6000
+GROUP BY E.DEPARTMENT_ID
+ORDER BY empleados, 1
+;
+
+SELECT e.last_name, e.job_id, e.department_id
+FROM employees e 
+WHERE e.department_id IN (SELECT D.department_id
+    FROM departments D
+    JOIN locations l USING (location_id) where LOWER(l.city) = 'toronto');
+
+SELECT e.last_name, e.job_id, e.department_id, R.department_name
+FROM employees e 
+    JOIN (SELECT D.department_id, d.department_name
+        FROM departments D
+        JOIN locations l USING (location_id) where LOWER(l.city) = 'toronto') R ON e.department_id = R.department_id
+;
