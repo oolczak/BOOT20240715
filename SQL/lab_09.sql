@@ -24,6 +24,13 @@ FROM locations l
     JOIN countries c ON l.country_id = c.country_id
     JOIN departments d ON l.location_id = d.location_id;
 
+SELECT DISTINCT c.country_id, c.country_name
+FROM countries c
+    LEFT JOIN locations l ON l.country_id = c.country_id
+    LEFT JOIN departments d ON l.location_id = d.location_id
+WHERE d.DEPARTMENT_ID IS NULL
+;
+
 -- lab_09_03
 SELECT employee_id, job_id, department_id --, 1
 FROM employees
