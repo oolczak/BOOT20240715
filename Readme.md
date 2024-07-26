@@ -36,3 +36,16 @@ Start SQL*Plus and run the top level installation:
 ### Labs
 
 - https://livesql.oracle.com/apex/f?p=590:1000
+
+## SoapUI con Groovy
+
+### Instalación
+
+- [SoapUI Open Source](https://www.soapui.org/downloads/soapui/)
+- [Groovy](https://groovy.apache.org/download.html)
+- [JDK (si es necesario)](https://www.oracle.com/es/java/technologies/downloads/)
+
+### Documentación
+
+- [SoapUI Open Source](https://www.soapui.org/docs/soapui-projects/)
+- [Groovy](https://www.groovy-lang.org/documentation.html)
