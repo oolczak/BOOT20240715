@@ -7,7 +7,7 @@ BEGIN
     select count(*)
     into v_cuantos
     from EMPLOYEES 
-    where EMPLOYEE_ID = 203;
+    where EMPLOYEE_ID = 1203;
     if v_cuantos = 1 then
         DECLARE
             v_nombre VARCHAR2(100); -- not null; -- default 'Mundo';
@@ -22,9 +22,9 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('Hola ' || nvl(v_nombre, '(anonimo)') || ' tu salario es ' || total);
         END;
     elsif v_cuantos = 0 THEN
-        null;
-        else 
-        null;
+        DBMS_OUTPUT.PUT_LINE('No hay ninguno');
+    else 
+        DBMS_OUTPUT.PUT_LINE('Hay demasiados');
     end if;
 --EXCEPTION
 END;
