@@ -21,7 +21,7 @@ BEGIN
 --EXCEPTION
 END;
 */
-
+/*
 --VARIABLE emp_id NUMBER;
 
 DECLARE
@@ -45,3 +45,21 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Hola ' || nvl(v_nombre, '(anonimo)') || ' tu salario es ' || total);
 --EXCEPTION
 END;
+*/
+VARIABLE b_emp_id NUMBER
+VARIABLE b_percent NUMBER 
+VARIABLE b_new_salary NUMBER 
+
+DECLARE 
+   v_salary EMPLOYEES.SALARY%TYPE;
+BEGIN 
+    select SALARY
+    into v_salary
+    from EMPLOYEES 
+    where EMPLOYEE_ID = :b_emp_id;
+    v_salary := v_salary * b_percent;
+    DBMS_OUTPUT.PUT_LINE('Nuevo salario: ' || v_salary);
+    :b_new_salary := v_salary;
+END;
+/ 
+PRINT b_new_salary 
