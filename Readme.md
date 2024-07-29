@@ -45,6 +45,21 @@ Start SQL*Plus and run the top level installation:
 - [Groovy](https://groovy.apache.org/download.html)
 - [JDK (si es necesario)](https://www.oracle.com/es/java/technologies/downloads/)
 
+### Instalación manual
+
+Descargar binarios: <https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.22.zip>
+
+Descomprimir en un directorio, por ejemplo: c:\curso\groovy
+
+Abrir aplicación: Editar variables de entorno ***de esta cuenta***. En la lista superior, variables de usuario:
+
+- Nueva:
+
+      Nombre de variable: GROOVY_HOME
+      Valor de variable: c:\curso\groovy
+
+- Localizar en la lista Path -> Editar -> Nueva -> *c:\curso\groovy\bin*
+
 ### Documentación
 
 - [SoapUI Open Source](https://www.soapui.org/docs/soapui-projects/)
