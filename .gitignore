@@ -1,3 +1,4 @@
+*.pdf
 # Java related
 target/**
 *.jar
