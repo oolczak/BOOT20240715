@@ -2970,4 +2970,4 @@ COMMIT;
 
 create table emp 
 as select * from employees;
-drop table emp;
+--drop table emp;
