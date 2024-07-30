@@ -2968,6 +2968,6 @@ INSERT INTO MESSAGES(RESULTS) VALUES('Table created');
 
 COMMIT;
 
+--drop table emp;
 create table emp 
 as select * from employees;
---drop table emp;
