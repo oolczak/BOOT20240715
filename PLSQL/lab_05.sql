@@ -21,6 +21,7 @@ BEGIN
     location_id)  
     VALUES (v_dept_id, v_dept_name, NULL);
     DBMS_OUTPUT.PUT_LINE (' SQL%ROWCOUNT gives ' || SQL%ROWCOUNT);
+    COMMIT;
 END;
 -- SELECT * FROM departments WHERE department_id=280;
 

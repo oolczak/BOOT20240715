@@ -25,7 +25,9 @@ BEGIN
 END;
 */
 -- lab_06_01
-
+--             INSERT INTO messages(results) 
+--             VALUES ('kk'); 
+-- SELECT * from messages
 
 BEGIN 
     FOR i in 1..10 LOOP 
@@ -35,9 +37,11 @@ BEGIN
         --     INSERT INTO messages(results) 
         --     VALUES (i); 
         -- END IF;  
-        IF i NOT IN (6, 8) THEN
-            INSERT INTO messages(results) VALUES ('Message: ' || i); 
-        END IF;
+        -- IF i NOT IN (6, 8) THEN
+        --     INSERT INTO messages(results) VALUES ('Message: ' || i); 
+        -- END IF;
+        CONTINUE WHEN i IN (6, 8);
+        INSERT INTO messages(results) VALUES ('Message: ' || i); 
     END LOOP; 
     COMMIT; 
 END;
@@ -73,7 +77,7 @@ BEGIN
     COMMIT; 
 END;
 /
-SELECT employee_id,salary, stars, RPAD('*', (salary/1000), '*') SALARIES_IN_ASTERISK 
+SELECT employee_id,salary, stars, RPAD('*', ROUND((salary/1000)), '*') SALARIES_IN_ASTERISK 
 FROM emp WHERE employee_id =176;
 
 -- lab_04_08

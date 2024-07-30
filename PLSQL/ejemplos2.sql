@@ -57,3 +57,6 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE (' SQL%ROWCOUNT gives ' || SQL%ROWCOUNT);
 END;
 -- ROLLBACK;
+SELECT * FROM departments WHERE department_id=280;
+SELECT MAX(department_id)  FROM departments;
+COMMIT;
