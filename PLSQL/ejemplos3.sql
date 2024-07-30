@@ -48,9 +48,10 @@ DECLARE
     v_id DEPARTMENTS.DEPARTMENT_ID%TYPE;
 BEGIN
     v_list := LISTA('uno', 'dos', 'tres', 'cuatro');
-    -- for i in 1..v_list.count() LOOP
-    --     DBMS_OUTPUT.PUT_LINE (i || ': ' || v_list(i));
-    -- end loop;
+    --v_list := LISTA(FOR i IN 1..10 => RPAD('*', i, '*'));
+    for i in 1..v_list.count() LOOP
+        DBMS_OUTPUT.PUT_LINE (i || ': ' || v_list(i));
+    end loop;
     -- v_list.delete(2);
     -- for i in 1..v_list.count() LOOP
     --     DBMS_OUTPUT.PUT_LINE (i || ': ' || v_list(i));
@@ -71,6 +72,8 @@ BEGIN
     into v_mapa(v_id) 
     from DEPARTMENTS
     WHERE DEPARTMENT_ID = v_id;
+    v_mapa(0) := 'Ninguno';
+    v_mapa(-90) := '--------';
     FOR k,v IN PAIRS OF v_mapa LOOP
         DBMS_OUTPUT.PUT_LINE(k || ' => '|| v);
     END LOOP;
@@ -81,7 +84,38 @@ BEGIN
     v_dic('MAXIMO') := 6000;
 
     DBMS_OUTPUT.PUT_LINE ('Dept: ' || v_dic('DEPARTMENT_ID') || ' Min: ' || v_dic('MINIMO')  || ' Max: ' || v_dic('MAXIMO'));
+    v_dic := DICCIONARIO('DEPARTMENT_ID' => 190, 'MINIMO' => 11000, 'MAXIMO' => 16000);
     FOR prop IN INDICES OF v_dic LOOP
         DBMS_OUTPUT.PUT_LINE(prop || ' => '|| v_dic(prop));
     END LOOP;    
+END;
+
+/
+
+DECLARE
+    CURSOR cur_dept IS select * from DEPARTMENTS;
+    v_dept DEPARTMENTS%ROWTYPE;
+BEGIN
+    OPEN cur_dept;
+    -- FETCH cur_dept INTO v_dept;
+    -- WHILE cur_dept%found loop 
+    --     DBMS_OUTPUT.PUT_LINE ('Dept: ' ||  v_dept.DEPARTMENT_ID || ' ' || v_dept.DEPARTMENT_NAME  || ' (' || v_dept.LOCATION_ID || ')');
+    --     FETCH cur_dept INTO v_dept;
+    -- end loop;
+    loop 
+        FETCH cur_dept INTO v_dept;
+        EXIT when cur_dept%notfound;
+        DBMS_OUTPUT.PUT_LINE ('Dept: ' ||  v_dept.DEPARTMENT_ID || ' ' || v_dept.DEPARTMENT_NAME  || ' (' || v_dept.LOCATION_ID || ')');
+    end loop;
+    CLOSE cur_dept;
+END;
+
+/
+
+DECLARE
+    v_dept DEPARTMENTS%ROWTYPE;
+BEGIN
+    for v_dept in (select * from DEPARTMENTS) loop
+        DBMS_OUTPUT.PUT_LINE ('Dept: ' ||  v_dept.DEPARTMENT_ID || ' ' || v_dept.DEPARTMENT_NAME  || ' (' || v_dept.LOCATION_ID || ')');
+    end loop;
 END;
