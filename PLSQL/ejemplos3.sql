@@ -180,4 +180,40 @@ BEGIN
   RETURN FALSE;  
  END IF;
 END;
+/
+-- runner for ALUMNO.SECURE_DML
+SET SERVEROUTPUT ON
+BEGIN
+  ALUMNO.SECURE_DML();
+  -- Rollback;
+  SELECT check_sal(employee_id)
+  from employees;
+end;
+/
 
+DECLARE 
+    TYPE LISTA is table of departments.department_id%TYPE;
+    CURSOR  c_emp_cursor(v_deptno NUMBER) IS 
+        SELECT last_name, salary, manager_id 
+        FROM   employees 
+        WHERE  department_id = v_deptno;
+    v_departments LISTA DEFAULT LISTA(10,20,50,80);
+    create function salario_anual(salario number(8,2)) return number(8,2) 
+    as 
+    begin
+        return salario * 12; 
+    end;
+
+BEGIN 
+    FOR i IN 1..v_departments.count() LOOP
+        DBMS_OUTPUT.PUT_LINE ('Departamento: ' || v_departments(i)); 
+        DBMS_OUTPUT.PUT_LINE('----------------------------------------------------------------------------------------'); 
+        FOR emp_record IN c_emp_cursor(v_departments(i)) LOOP 
+            IF check_sal(emp_record.manager_id) THEN 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' Debería recibir un aumento'); 
+            ELSE 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' NO debería recibir un aumento'); 
+            END IF; 
+        END LOOP; 
+    END LOOP; 
+END; 
