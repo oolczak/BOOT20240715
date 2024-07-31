@@ -121,9 +121,10 @@ BEGIN
 END;
 
 /
+select last_name, count(*) from EMPLOYEES GROUP by last_name ORDER BY 2 desc;
 DECLARE
     not_blank_excetion EXCEPTION;
-    v_last_name employees.last_name%type; -- default 'King';
+    v_last_name employees.last_name%type default 'King';
 BEGIN
     <<reintenta>>
     DECLARE
@@ -140,8 +141,11 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE ('-----------Dept: ' ||  v_id);
     EXCEPTION
         WHEN TOO_MANY_ROWS OR INVALID_CURSOR THEN
-            DBMS_OUTPUT.PUT_LINE ('ERROR: Your SELECT statement retrieved multiple rows. Consider using a cursor.');
-            v_last_name := 'Davies';  
+            DBMS_OUTPUT.PUT_LINE ('ERROR: ' || v_last_name || ' retrieved multiple rows. Consider using a cursor.');
+            if v_last_name in ('Davies','Smith') THEN
+                raise TOO_MANY_ROWS;
+            end if;
+            v_last_name := 'Smith';  
             goto reintenta;
     END;
     DBMS_OUTPUT.PUT_LINE ('Terminado');
@@ -198,7 +202,8 @@ DECLARE
         FROM   employees 
         WHERE  department_id = v_deptno;
     v_departments LISTA DEFAULT LISTA(10,20,50,80);
-    create function salario_anual(salario number(8,2)) return number(8,2) 
+
+    function salario_anual(salario number) return number 
     as 
     begin
         return salario * 12; 
@@ -210,9 +215,9 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('----------------------------------------------------------------------------------------'); 
         FOR emp_record IN c_emp_cursor(v_departments(i)) LOOP 
             IF check_sal(emp_record.manager_id) THEN 
-                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' Debería recibir un aumento'); 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' Debería recibir un aumento (' || salario_anual(emp_record.salary) || ')'); 
             ELSE 
-                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' NO debería recibir un aumento'); 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' NO debería recibir un aumento (' || salario_anual(emp_record.salary) || ')'); 
             END IF; 
         END LOOP; 
     END LOOP; 
