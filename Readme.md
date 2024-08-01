@@ -64,3 +64,9 @@ Abrir aplicación: Editar variables de entorno ***de esta cuenta***. En la lista
 
 - [SoapUI Open Source](https://www.soapui.org/docs/soapui-projects/)
 - [Groovy](https://www.groovy-lang.org/documentation.html)
+
+### Servicios
+
+- <http://www.dneonline.com/calculator.asmx?wsdl>
+- <https://petstore.swagger.io/v2/swagger.json>
+- <https://jsonplaceholder.typicode.com/>
