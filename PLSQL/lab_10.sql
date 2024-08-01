@@ -23,6 +23,7 @@ DECLARE
     END;
 BEGIN
     local;
+    local;
 END;
 /
 CREATE OR REPLACE PROCEDURE greet(p_name VARCHAR2) IS

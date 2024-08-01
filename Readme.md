@@ -44,6 +44,9 @@ Start SQL*Plus and run the top level installation:
 - [SoapUI Open Source](https://www.soapui.org/downloads/soapui/)
 - [Groovy](https://groovy.apache.org/download.html)
 - [JDK (si es necesario)](https://www.oracle.com/es/java/technologies/downloads/)
+- JDBC Drivers (copiar en %soapui_home%/bin/ext):
+  - [OracleThin/
+oracle.jdbc.driver.OracleDriver](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc11/23.4.0.24.05/ojdbc11-23.4.0.24.05.jar)
 
 ### Instalación manual
 

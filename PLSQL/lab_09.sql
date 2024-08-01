@@ -36,7 +36,7 @@ select *  from messages order by 1 desc;
 -- lab_09_02
 DECLARE   
     e_childrecord_exists EXCEPTION; 
-    -- PRAGMA EXCEPTION_INIT(e_childrecord_exists, -02292);
+    PRAGMA EXCEPTION_INIT(e_childrecord_exists, -02292);
 BEGIN 
     DBMS_OUTPUT.PUT_LINE(' Deleting department 40........'); 
     delete from departments where department_id=40; 
