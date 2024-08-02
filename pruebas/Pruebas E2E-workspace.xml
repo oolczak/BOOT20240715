@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-workspace name="Pruebas E2E" projectRoot="${workspaceDir}" soapui-version="5.7.2" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
+  <con:project name="calculator">calculator-soapui-project.xml</con:project>
+  <con:project name="PetStore">PetStore-soapui-project.xml</con:project>
+  <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>
