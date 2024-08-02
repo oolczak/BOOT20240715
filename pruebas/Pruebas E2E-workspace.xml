@@ -3,5 +3,6 @@
   <con:settings/>
   <con:project name="calculator">calculator-soapui-project.xml</con:project>
   <con:project name="PetStore">PetStore-soapui-project.xml</con:project>
+  <con:project name="Manualmente">Manualmente-soapui-project.xml</con:project>
   <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>
