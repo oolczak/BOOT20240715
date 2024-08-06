@@ -1,1 +1,1 @@
-println "Hola mundo"
+println "Hola clase"
