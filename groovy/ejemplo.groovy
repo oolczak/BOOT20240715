@@ -43,7 +43,7 @@ assert ints == ['1','3','5','7','9']
 assert ints.class.name == 'groovy.lang.IntRange'
 */
 
-def regex = ~/\d[A-Za-z]/
+def regex = ~/\d{1,8}[A-Za-z]/
 assert 'ss12345678zkk' =~ regex
 
 a += 1 // a = a + 1
