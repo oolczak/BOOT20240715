@@ -34,7 +34,7 @@ assert letters[2..4] == ['c', 'd', 'e']
 assert letters[-5] == 'a'
 
 def ints = '1'..'9' // new IntRange(1, 10)
-ints.step(2)
+ints = ints.step(2)
 ints.each { print "$it " } 
 assert ints.from == '1'
 assert ints.to == '9'
