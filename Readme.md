@@ -73,3 +73,16 @@ Abrir aplicación: Editar variables de entorno ***de esta cuenta***. En la lista
 - <http://www.dneonline.com/calculator.asmx?wsdl>
 - <https://petstore.swagger.io/v2/swagger.json>
 - <https://jsonplaceholder.typicode.com/>
+
+### Ejerccios
+
+- Tablas de multiplicar
+- Calcula el factorial de un número
+- Muestra los números primos entre 1 y 100.
+- Crea un función que reciba un texto y devuelva la vocal que más veces se repita (con y sin tilde son la misma vocal).
+- Crea dos funciones, una que calcule el máximo común divisor (MCD) y otra que calcule el mínimo común múltiplo (mcm) de dos números enteros. No se pueden utilizar operaciones del lenguaje que lo resuelvan directamente.
+- Juego de piedra, papel, tijera. 
+- Juego de “Adivina el número que estoy pensando”, un número del 1 al 100, ya te diré si es mayor o menor que el mío, pero tienes 10 intentos como mucho.
+- Crear una función que valide un NIF
+- Definir una función que determine si la cadena de texto que se le pasa como parámetro es un palíndromo, es decir, si se lee de la misma forma desde la izquierda y desde la derecha. Ejemplo de palíndromo complejo: "La ruta nos aporto otro paso natural".
+
