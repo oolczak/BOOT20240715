@@ -119,3 +119,106 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE ('Dept: ' ||  v_dept.DEPARTMENT_ID || ' ' || v_dept.DEPARTMENT_NAME  || ' (' || v_dept.LOCATION_ID || ')');
     end loop;
 END;
+
+/
+select last_name, count(*) from EMPLOYEES GROUP by last_name ORDER BY 2 desc;
+DECLARE
+    not_blank_excetion EXCEPTION;
+    v_last_name employees.last_name%type default 'King';
+BEGIN
+    <<reintenta>>
+    DECLARE
+        v_id employees.employee_id%type;
+    BEGIN
+        if(v_last_name is null or LENGTH(TRIM(v_last_name)) = 0) THEN
+            --RAISE not_blank_excetion;
+            raise_application_error (-20001, 'El last_name tiene que tener valor');
+        end if;
+        SELECT employee_id
+        into v_id
+        FROM employees
+        WHERE last_name = v_last_name;
+        DBMS_OUTPUT.PUT_LINE ('-----------Dept: ' ||  v_id);
+    EXCEPTION
+        WHEN TOO_MANY_ROWS OR INVALID_CURSOR THEN
+            DBMS_OUTPUT.PUT_LINE ('ERROR: ' || v_last_name || ' retrieved multiple rows. Consider using a cursor.');
+            if v_last_name in ('Davies','Smith') THEN
+                raise TOO_MANY_ROWS;
+            end if;
+            v_last_name := 'Smith';  
+            goto reintenta;
+    END;
+    DBMS_OUTPUT.PUT_LINE ('Terminado');
+EXCEPTION
+    WHEN not_blank_excetion THEN
+        DBMS_OUTPUT.PUT_LINE ('ERROR:  No puede estar en blanco');
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE ('ERROR:  Not Data Found');
+    WHEN OTHERS THEN
+        ROLLBACK;
+        if SQLCODE = -20001 THEN
+            DBMS_OUTPUT.PUT_LINE (SQLCODE || '------>' || SQLERRM);
+        else
+            DBMS_OUTPUT.PUT_LINE ('ERROR: ' || SQLCODE || '-' || SQLERRM);
+        end if;
+ --     error_code := SQLCODE ;
+--     error_message := SQLERRM ;
+--    INSERT INTO errors (e_user, e_date, error_code,
+--    error_message) VALUES(USER,SYSDATE,error_code, 
+--    error_message);
+
+END;
+/
+CREATE FUNCTION check_sal(p_empno employees.employee_id%TYPE) RETURN Boolean IS
+ v_dept_id employees.department_id%TYPE;
+ v_sal     employees.salary%TYPE;
+ v_avg_sal employees.salary%TYPE;
+BEGIN
+ SELECT salary,department_id INTO v_sal,v_dept_id FROM employees
+   WHERE employee_id=p_empno;
+ SELECT avg(salary) INTO v_avg_sal FROM employees 
+   WHERE department_id=v_dept_id;
+ IF v_sal > v_avg_sal THEN
+  RETURN TRUE;
+ ELSE
+  RETURN FALSE;  
+ END IF;
+END;
+/
+-- runner for ALUMNO.SECURE_DML
+SET SERVEROUTPUT ON
+BEGIN
+  ALUMNO.SECURE_DML();
+  -- Rollback;
+  SELECT check_sal(employee_id)
+  from employees;
+end;
+/
+
+DECLARE 
+    TYPE LISTA is table of departments.department_id%TYPE;
+    CURSOR  c_emp_cursor(v_deptno NUMBER) IS 
+        SELECT last_name, salary, manager_id 
+        FROM   employees 
+        WHERE  department_id = v_deptno;
+    v_departments LISTA DEFAULT LISTA(10,20,50,80);
+
+    function salario_anual(salario number) return number 
+    as 
+    begin
+        return salario * 12; 
+    end;
+
+BEGIN 
+    FOR i IN 1..v_departments.count() LOOP
+        DBMS_OUTPUT.PUT_LINE ('Departamento: ' || v_departments(i)); 
+        DBMS_OUTPUT.PUT_LINE('----------------------------------------------------------------------------------------'); 
+        FOR emp_record IN c_emp_cursor(v_departments(i)) LOOP 
+            IF check_sal(emp_record.manager_id) THEN 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' Debería recibir un aumento (' || salario_anual(emp_record.salary) || ')'); 
+            ELSE 
+                DBMS_OUTPUT.PUT_LINE ('    ' || emp_record.last_name || ' NO debería recibir un aumento (' || salario_anual(emp_record.salary) || ')'); 
+            END IF; 
+        END LOOP; 
+    END LOOP; 
+END; 
