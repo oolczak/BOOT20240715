@@ -42,7 +42,7 @@ println ints.toString()
 assert ints == ['1','3','5','7','9']
 assert ints.class.name == 'groovy.lang.IntRange'
 */
-
+/*
 def regex = ~/\d{1,8}[A-Za-z]/
 assert 'ss12345678zkk' =~ regex
 
@@ -68,5 +68,28 @@ p3 = p1 + p2
 p3 = p1 + "1"
 p3 = p1.plus(p2)
 
+*/
 
-
+class Enclosing {
+    Closure who = { owner }
+    class Inner {
+        Closure who = { this }
+    }
+    void run() {
+        def nestedClosures = {
+            def what = { owner }
+            println "this: ${this.class}\nthis.who(): ${this.who().class}"
+            println "owner: ${owner.class}\ndelegate: ${delegate.class}"
+            println "owner.who(): ${owner.who().class}\ndelegate.who(): ${delegate.who().class}"
+            println "who(): ${who().class}\nwhat(): ${what().class}"
+            println "------------------------------------------"
+            what()
+        }
+        nestedClosures.resolveStrategy = Closure.DELEGATE_FIRST
+        nestedClosures()
+        def inner = new Inner()
+        nestedClosures.delegate = inner
+        nestedClosures()
+    }
+}
+(new Enclosing()).run()
