@@ -93,3 +93,45 @@ class Enclosing {
     }
 }
 (new Enclosing()).run()
+
+def op = {a,b-> a + b }
+println op(2, 3)
+op = {a,b-> a - b }
+println op(2, 3)
+
+def calc = {oper -> {
+        switch(oper) {
+            case '+': return {a,b-> a + b }
+            case '-': return {a,b-> a - b }
+            case '*': return {a,b-> a * b }
+            case '/': return {a,b-> a / b }
+            case '**': return {a,b-> a ** b }
+            default: throw new Exception('operacion no soportada')
+        }
+    }
+}
+
+def calcula = {oper, a, b -> {
+        switch(oper) {
+            case '+': return {a + b }
+            case '-': return { a - b }
+            case '*': return {a * b }
+            case '/': return {a / b }
+            case '**': return { a ** b }
+            default: throw new Exception('operacion no soportada')
+        }
+    }
+}
+def suma = calc.curry('+')
+def pow = calcula.curry('**')
+println calcula('**',2, 3)()
+println pow(2, 3)()
+
+println calc('+')(2, 3)
+println suma()(2, 3)
+println calc('/')(2, 3)
+println calc('-')(2, 3)
+println calc('*')(2, 3)
+println calc('**')(2, 3)
+
+4.times { println 'descanso!!!!' }
