@@ -1,6 +1,8 @@
 
 class Kk implements Comparable {
     void cotilla() {
+        String cad;
+        //cad.repl
         // var cad = "";
         // cad.replace();
         // // java.util.regex.Matcher()

@@ -3,7 +3,7 @@
 //
 for(def tabla in 1..10) {
     println "Tabla del $tabla"
-    for(def factor in 1..10) {
+    for(def factor in 0..10) {
         println "$factor x $tabla = ${factor * tabla}"
     }
 }
@@ -22,21 +22,21 @@ println "El factorial de $num es $result"
 var maximo = 100
 var rslt = []
 var candidato = 2
-    while (maximo > candidato) {
-        var esPrimo = true
-        for (var indice in rslt) {
-            if (candidato % indice == 0) {
-                esPrimo = false
-                break
-            }
-        }
-
-        candidato++
-        if (esPrimo) {
-            if (candidato < maximo)
-               rslt << (candidato - 1)
+while (maximo > candidato) {
+    var esPrimo = true
+    for (var indice in rslt) {
+        if (candidato % indice == 0) {
+            esPrimo = false
+            break
         }
     }
+
+    candidato++
+    if (esPrimo) {
+        if (candidato < maximo)
+            rslt << (candidato - 1)
+    }
+}
 rslt.each { print "$it " } 
 
 //
@@ -192,10 +192,10 @@ def esPalindromo(cadena) {
     cadena = Normalizer.normalize(cadena.toLowerCase(), Normalizer.Form.NFD)
         .replaceAll(/[\p{InCombiningDiacriticalMarks}]/, '')  // tildes
         .replaceAll(/[ .,;:#¿?¡!()\[\]{}=+\-*\/_`~$%^&'"]/, '')
-    // for (def i = 0; i < cadena.length() - i; i++) {
-    //     if (cadena[i] != cadena[-(i+1)]) return false
-    // }
-    // true
+    for (def i = 0; i < cadena.length() - i; i++) {
+        if (cadena[i] != cadena[-(i+1)]) return false
+    }
+    true
     cadena == cadena.reverse
 }
 
@@ -209,9 +209,3 @@ assert esPalindromo('¿Dábale (arroz) a la {zorra} el [abad]?')
 assert esPalindromo('a¿¡+-^[]*!?\'"a')
 println 'OK'
 
-assert esPalindromo('La ruta nos aporto otro paso natural')
-assert esPalindromo('No lo es')
-//import java.text.Normalizer
-    val normalizedText = Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD)
-        .replace("[^a-z0-9]".toRegex(), "")
-        return normalizedText == normalizedText.reversed()
