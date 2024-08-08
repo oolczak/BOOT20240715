@@ -1,14 +1,14 @@
-import javax.swing.JOptionPane
+// import javax.swing.JOptionPane
 
-def cad = JOptionPane.showInputDialog("Pide en GroovyConsole:")
-println "Entrada: $cad"
+// def cad = JOptionPane.showInputDialog("Pide en GroovyConsole:")
+// println "Entrada: $cad"
 
-/*
-Scanner teclado = new Scanner(System.in) 
-println "Pide en linea de comando:" 
-def cad = teclado.nextLine() 
-println "Entrada: $cad"
-*/
+
+// Scanner teclado = new Scanner(System.in) 
+// println "Pide en linea de comando:" 
+// def cad = teclado.nextLine() 
+// println "Entrada: $cad"
+
 
 var rnd = new Random() 
 def num = rnd.nextInt(10)
