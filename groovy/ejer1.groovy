@@ -112,7 +112,7 @@ int mcm(int a, int b) {
 //
 
 abstract class JuegoPiedraPapelTijera implements Comparable {
-    abstract int compareTo(Object o);
+//    abstract int compareTo(Object o);
 }
 class Piedra extends JuegoPiedraPapelTijera {
     int compareTo(Object o) { o instanceof Piedra ? 0 : (o instanceof Tijera ? 1 : -1) }
